@@ -1,0 +1,20 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Helvetica, Arial, Sans-serif;
+  font-size: $m-size;
+}
+
+.main-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.page-container {
+  background-image: url('/background3.jpg');
+  background-repeat: repeat-y;
+  height: 500rem;
+  width: 100vw;
+}

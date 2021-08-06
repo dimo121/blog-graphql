@@ -1,0 +1,55 @@
+//Colours
+
+$button-blue: #006bc6;
+$dark-blue: #002a4e;
+$fire-brick: #b22222;
+$floral-white: #fffaf0;
+$grey: #808080;
+$grey-blue: #337590;
+$gainsboro: #dcdcdc;
+$header-dark: #33363a;
+$off-black: #1c1c1c;
+$off-white: #a5afd7;
+
+//Spacing
+$s-size: 1.2rem;
+$m-size: 1.6rem;
+$lm-size: 2.4rem;
+$l-size: 3.2rem;
+$xl-size: 4.8rem;
+$desktop-breakpoint: 45rem;
+
+$header-hamburger--size: 24px; // hamburger button, width and height
+$header-hamburger--thickness: 2px; // hamburger button, stroke width
+$header-hamburger--radius: null; // hamburger button, lines radius cap
+$header-hamburger--distance: 7px; // hamburger button, top and bottom lines distance from center
+
+$palette: (
+  light: (
+    1: #eceded,
+    2: #9ca9b3,
+    3: #717d86,
+  ),
+  dark: (
+    1: #151719,
+    2: #25282c,
+    3: #33363a,
+  ),
+  primary: (
+    1: #6163ff,
+    2: #acadff,
+    3: #a33d7c,
+    4: #e9e9ff,
+  ),
+  secondary: (
+    1: #24e5af,
+    2: #73efcc,
+    3: #1cb68b,
+    4: #d2f9ee,
+  ),
+  alert: (
+    error: #ff6171,
+    warning: #ffa173,
+    success: #24e5af,
+  ),
+);
