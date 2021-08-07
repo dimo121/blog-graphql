@@ -1,7 +1,6 @@
 import React from 'react';
 import BlogItem from './BlogItem';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 import { config } from '../config/config';
 import jwt from 'jsonwebtoken';
 import { useMutation } from '@apollo/react-hooks';
@@ -32,11 +31,12 @@ const MyBlogsPage = () => {
   if (!token) {
     return <p>You are not signed in</p>;
   } else {
-    try {
-      decoded = jwt.verify(token, config.jwtSecret);
-    } catch (e) {
-      console.log(e);
-    }
+    decoded = jwt.verify(token, config.jwtSecret, (err, decoded) => {
+      if (err) {
+        console.log(err, 'Error 401 - token expired');
+        window.location.replace('/');
+      } else return decoded;
+    });
   }
 
   const { data, loading, error, refetch, networkStatus } = useQuery(

@@ -40,7 +40,8 @@ const Dashboard = () => {
   }
 
   if (error) {
-    return <p>Error {error}</p>;
+    console.log(error);
+    return <p>Error</p>;
   }
 
   let argBlogs = []; //required for page numbers

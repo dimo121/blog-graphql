@@ -1,31 +1,27 @@
 import React from 'react';
 import { FIND_USER } from '../apollo/protocol';
-import jwt from 'jsonwebtoken';
-import { config } from '../config/config';
 import { useQuery } from '@apollo/react-hooks';
 
-const SignInDisplay = () => {
-  const token = localStorage.getItem('jwtoken');
-
-  const decoded = jwt.verify(token, config.jwtSecret);
-
+const SignInDisplay = (props) => {
+  console.log(props);
   const { data, loading, error } = useQuery(FIND_USER, {
     variables: {
-      userId: decoded.id,
+      userId: props.id,
     },
   });
 
-  if (loading) {
-    return <p>Loading...</p>;
+  if (error) {
+    console.log(error);
+    return <p className="nav-signin"></p>;
   }
 
-  if (error) {
-    return <p>error</p>;
+  if (loading) {
+    return <p className="nav-signin">Loading...</p>;
   }
 
   return (
     <div className="nav-signin">
-      <p>Logged in as: {data.user.username}</p>
+      {error ? <p></p> : <p>Logged in as: {data.user.username}</p>}
     </div>
   );
 };

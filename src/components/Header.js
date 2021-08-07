@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import img from './react-logo.png';
+import jwt from 'jsonwebtoken';
+import { jwtSecret } from '../config/config';
 import LoginModal from './LoginModal';
 import RegisterModal from './RegisterModal';
 import { CREATE_USER, LOGIN_USER } from '../apollo/protocol';
@@ -10,7 +12,7 @@ import SignInDisplay from './SignInDisplay';
 const Header = (props) => {
   const [loginMod, setLogin] = useState(undefined);
   const [registerMod, setRegister] = useState(undefined);
-  const [loggedIn, setUser] = useState(undefined);
+  const [loggedIn, setUser] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +24,12 @@ const Header = (props) => {
     const token = localStorage.getItem('jwtoken');
 
     if (token) {
-      setUser(true);
+      jwt.verify(token, jwtSecret, (err, decoded) => {
+        if (err) {
+          setUser('');
+          localStorage.clear();
+        } else setUser(decoded.id);
+      });
     }
   }, []);
 
@@ -33,7 +40,7 @@ const Header = (props) => {
 
   const buttonOption = () => {
     if (loggedIn) {
-      setUser(undefined); //implement cookies for jwtoken
+      setUser('');
 
       localStorage.clear();
 
@@ -62,7 +69,7 @@ const Header = (props) => {
         .then((response) => {
           localStorage.setItem('jwtoken', response.data.createUser.tokens);
           setError(undefined);
-          setUser(true);
+          setUser(response.data.createUser.id);
           clearModal();
         })
         .catch((err) => {
@@ -81,7 +88,7 @@ const Header = (props) => {
         .then((response) => {
           localStorage.setItem('jwtoken', response.data.login.tokens);
           setError(undefined);
-          setUser(true);
+          setUser(response.data.login.id);
           clearModal();
         })
         .catch((err) => {
@@ -97,6 +104,7 @@ const Header = (props) => {
         <span>
           <p>
             <img
+              className="header-logo"
               src={img}
               alt="React logo"
               style={{ height: '35px', width: '40px', marginTop: '20px' }}
@@ -129,7 +137,7 @@ const Header = (props) => {
             )}
           </li>
           <li>
-            {loggedIn && <SignInDisplay />}
+            {loggedIn && <SignInDisplay id={loggedIn} />}
             <button onClick={buttonOption}>
               {loggedIn ? 'Sign Out' : 'Sign In'}
             </button>
@@ -158,4 +166,4 @@ const Header = (props) => {
   );
 };
 
-export default withRouter(Header);
+export default Header;

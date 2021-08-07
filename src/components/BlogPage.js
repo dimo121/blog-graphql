@@ -1,7 +1,6 @@
 import React from 'react';
 import BlogItem from './BlogItem';
 import EntryItem from './Entryitem';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { FIND_BLOG } from '../apollo/protocol';
 

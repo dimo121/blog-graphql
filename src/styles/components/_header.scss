@@ -12,7 +12,6 @@
   font-weight: lighter;
   font-size: $lm-size;
   margin-left: $l-size;
-  //padding: $s-size;
 }
 
 .nav-container {
@@ -48,7 +47,6 @@
 .nav-signin {
   position: absolute;
   top: 10rem;
-  //margin-right: 5rem;//margin-left: auto;
   line-height: 0.8rem;
   font-size: 1.2rem;
 }
@@ -100,6 +98,27 @@
     background: transparent;
     display: inline-flex;
     position: relative;
+  }
+}
+
+.header-logo {
+  height: 35px;
+  width: 40px;
+  margin-top: 34px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .header-logo {
+    animation: Header-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes Header-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
