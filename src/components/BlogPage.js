@@ -1,11 +1,16 @@
-import React from 'react';
-import BlogItem from './BlogItem';
-import EntryItem from './Entryitem';
-import { useQuery } from '@apollo/react-hooks';
-import { FIND_BLOG } from '../apollo/protocol';
+import React from "react";
+import BlogItem from "./BlogItem";
+import EntryItem from "./EntryItem";
+import { useQuery } from "@apollo/react-hooks";
+import { FIND_BLOG } from "../apollo/protocol";
+import { db_mock } from "../apollo/db_mock";
 
 const BlogPage = (props) => {
-  const { data, loading, error } = useQuery(FIND_BLOG, {
+  const {
+    data = { blog: {} },
+    loading,
+    error,
+  } = useQuery(FIND_BLOG, {
     variables: {
       blogId: props.match.params.id,
     },
@@ -16,7 +21,7 @@ const BlogPage = (props) => {
   }
 
   if (error) {
-    return <p>error</p>;
+    data.blog = db_mock[props.match.params.id - 1];
   }
 
   return (

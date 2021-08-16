@@ -1,5 +1,9 @@
 .header-container {
-  background-image: linear-gradient(to right, #8b008b, #a33d7c);
+  background-image: linear-gradient(
+    to right,
+    $background-linear1,
+    $background-linear2
+  );
   color: white;
   width: 100vw;
   margin: 0;
@@ -8,10 +12,10 @@
 
 .header-title {
   display: flex;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
   font-weight: lighter;
   font-size: $lm-size;
-  margin-left: $l-size;
+  margin-left: $title-margin;
 }
 
 .nav-container {
@@ -34,7 +38,8 @@
 
 .nav-links {
   color: white;
-  margin: 0 $xl-size 0 0;
+  margin-right: $xl-size;
+  margin-left: $blog-margin;
   font-weight: 100;
   font-size: 1.6rem;
   text-decoration: none;
@@ -47,7 +52,7 @@
 .nav-signin {
   position: absolute;
   top: 10rem;
-  line-height: 0.8rem;
+  line-height: $sign-in-line-height;
   font-size: 1.2rem;
 }
 

@@ -1,57 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { NavLink } from 'react-router-dom';
-import img from './react-logo.png';
-import jwt from 'jsonwebtoken';
-import { jwtSecret } from '../config/config';
-import LoginModal from './LoginModal';
-import RegisterModal from './RegisterModal';
-import { CREATE_USER, LOGIN_USER } from '../apollo/protocol';
-import SignInDisplay from './SignInDisplay';
+import React, { useEffect, useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { NavLink } from "react-router-dom";
+import img from "./react-logo.png";
+import jwt from "jsonwebtoken";
+import config from "../config/config";
+import LoginModal from "./LoginModal";
+import RegisterModal from "./RegisterModal";
+import { CREATE_USER, LOGIN_USER } from "../apollo/protocol";
+import SignInDisplay from "./SignInDisplay";
 
-const Header = (props) => {
+const Header = () => {
   const [loginMod, setLogin] = useState(undefined);
   const [registerMod, setRegister] = useState(undefined);
-  const [loggedIn, setUser] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [loggedIn, setUser] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [newUser, user] = useMutation(CREATE_USER);
   const [loginUser, user2] = useMutation(LOGIN_USER);
 
   useEffect(() => {
-    const token = localStorage.getItem('jwtoken');
+    const token = localStorage.getItem("jwtoken");
 
     if (token) {
-      jwt.verify(token, jwtSecret, (err, decoded) => {
+      jwt.verify(token, config.jwtSecret, (err, decoded) => {
         if (err) {
-          setUser('');
+          setUser("");
           localStorage.clear();
-        } else setUser(decoded.id);
+        } else {
+          setUser(decoded.id);
+        }
       });
     }
   }, []);
 
   const clearModal = () => {
-    setLogin(undefined);
-    setRegister(undefined);
+    setLogin(false);
+    setRegister(false);
   };
 
   const buttonOption = () => {
     if (loggedIn) {
-      setUser('');
+      setUser("");
 
       localStorage.clear();
 
-      props.history.push('/');
+      window.location.replace("/");
     } else {
       setLogin(true);
     }
   };
 
   const registerModal = () => {
-    setLogin(undefined);
+    setError("");
+    setLogin(false);
     setRegister(true);
   };
 
@@ -67,14 +70,14 @@ const Header = (props) => {
         },
       })
         .then((response) => {
-          localStorage.setItem('jwtoken', response.data.createUser.tokens);
-          setError(undefined);
+          localStorage.setItem("jwtoken", response.data.createUser.tokens);
+          setError("");
           setUser(response.data.createUser.id);
           clearModal();
         })
         .catch((err) => {
           console.log(err);
-          setError('Email already has a registered account');
+          setError("Email already has a registered account");
         });
     } else if (loginMod) {
       loginUser({
@@ -86,14 +89,14 @@ const Header = (props) => {
         },
       })
         .then((response) => {
-          localStorage.setItem('jwtoken', response.data.login.tokens);
+          localStorage.setItem("jwtoken", response.data.login.tokens);
           setError(undefined);
           setUser(response.data.login.id);
           clearModal();
         })
         .catch((err) => {
           console.log(err);
-          setError('Wrong email and password combination');
+          setError("Wrong email and password combination");
         });
     }
   };
@@ -107,7 +110,7 @@ const Header = (props) => {
               className="header-logo"
               src={img}
               alt="React logo"
-              style={{ height: '35px', width: '40px', marginTop: '20px' }}
+              style={{ height: "45px", width: "50px", marginTop: "15px" }}
             />
           </p>
         </span>
@@ -139,7 +142,7 @@ const Header = (props) => {
           <li>
             {loggedIn && <SignInDisplay id={loggedIn} />}
             <button onClick={buttonOption}>
-              {loggedIn ? 'Sign Out' : 'Sign In'}
+              {loggedIn ? "Sign Out" : "Sign In"}
             </button>
           </li>
         </ul>

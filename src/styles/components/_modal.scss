@@ -54,6 +54,7 @@
 .modal-error {
   position: absolute;
   display: flex;
+  margin-left: $m-size;
 
   h6 {
     justify-content: center;

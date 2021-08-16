@@ -1,6 +1,83 @@
 {
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none",
+  "editor.formatOnSave": true,
+  "editor.accessibilityPageSize": 1,
+  "editor.accessibilitySupport": "off",
+  "editor.tabSize": 2,
+  "editor.hover.delay": 500,
+  "editor.fontFamily": "Consolas, monospace",
+  "editor.smoothScrolling": true,
+  "editor.tabCompletion": "on",
+  "editor.cursorStyle": "line-thin",
+  "editor.fontSize": 15,
+  "editor.minimap.scale": 3,
+  "editor.minimap.showSlider": "always",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.wordWrap": "bounded",
+  "workbench.commandPalette.history": 0,
+  "workbench.enableExperiments": false,
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Material Theme Ocean",
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.mouseBackForwardToNavigate": false,
+  "workbench.editor.restoreViewState": false,
+  "workbench.editor.tabSizing": "shrink",
+  "window.zoomLevel": 0.2,
+  "window.autoDetectHighContrast": false,
+  "update.enableWindowsBackgroundUpdates": false,
+  "update.mode": "start",
+  "update.showReleaseNotes": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": { "foreground": "#659955", "fontStyle": "italic" }
+      },
+      {
+        "scope": "punctuation.definition.comment.js",
+        "settings": { "foreground": "#659955" }
+      }
+    ]
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "kite.showWelcomeNotificationOnStartup": false,
+  "kite.loggingLevel": "error",
+  "kite.codefinder.enableLineDecoration": false,
+  "git.enableSmartCommit": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.CustomBrowser": "chrome:PrivateMode",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/dist/css"
+    }
+  ],
+  "quokka.showOutputOnStart": false
 }

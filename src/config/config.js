@@ -1,5 +1,7 @@
-export const config = {
-  env: 'development',
-  port: 3000,
-  jwtSecret: process.env.JWT_SECRET || 'YOUR_secret_key',
+const config = {
+  jwtSecret: "YOUR_secret_key",
+  apollo_port: process.env.PORT || "http://localhost:4000",
+  env: process.env.env || "development",
 };
+
+export default config;

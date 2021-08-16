@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogItem from './BlogItem';
 import { useQuery } from '@apollo/react-hooks';
-import { config } from '../config/config';
+import config from '../config/config';
 import jwt from 'jsonwebtoken';
 import { useMutation } from '@apollo/react-hooks';
 import { BLOGS_BY_USER, DELETE_BLOG } from '../apollo/protocol';
@@ -64,7 +64,7 @@ const MyBlogsPage = () => {
       </div>
     );
 
-  if (error) return <p>error</p>;
+  if (error) return <p>error 1</p>;
 
   return (
     <div className="page-container">

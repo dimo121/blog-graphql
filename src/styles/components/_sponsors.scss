@@ -1,0 +1,11 @@
+.sponsor-container {
+  position: absolute;
+  margin-top: $xl-size;
+  margin-left: $blog-margin;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

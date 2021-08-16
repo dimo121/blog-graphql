@@ -2,7 +2,6 @@ import EntryFormPage from './EntryFormPage';
 import { CREATE_ENTRY } from '../apollo/protocol';
 import React, { useEffect, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { withRouter } from 'react-router-dom';
 
 //change to hooks FC with useMutation
 const CreateEntry = (props) => {
@@ -27,7 +26,7 @@ const CreateEntry = (props) => {
                   blog_id,
                 },
               },
-            }).then((response) => {
+            }).then(() => {
               window.location.replace('/');
             });
           }}
@@ -37,4 +36,4 @@ const CreateEntry = (props) => {
   );
 };
 
-export default withRouter(CreateEntry);
+export default CreateEntry;

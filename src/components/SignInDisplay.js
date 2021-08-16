@@ -1,9 +1,8 @@
-import React from 'react';
-import { FIND_USER } from '../apollo/protocol';
-import { useQuery } from '@apollo/react-hooks';
+import React from "react";
+import { FIND_USER } from "../apollo/protocol";
+import { useQuery } from "@apollo/react-hooks";
 
 const SignInDisplay = (props) => {
-  console.log(props);
   const { data, loading, error } = useQuery(FIND_USER, {
     variables: {
       userId: props.id,
@@ -11,8 +10,7 @@ const SignInDisplay = (props) => {
   });
 
   if (error) {
-    console.log(error);
-    return <p className="nav-signin"></p>;
+    return <p className="nav-signin">Admin</p>;
   }
 
   if (loading) {
@@ -21,7 +19,7 @@ const SignInDisplay = (props) => {
 
   return (
     <div className="nav-signin">
-      {error ? <p></p> : <p>Logged in as: {data.user.username}</p>}
+      {data && <p>Logged in as: {data.user.username.split(" ")[0]}</p>}
     </div>
   );
 };

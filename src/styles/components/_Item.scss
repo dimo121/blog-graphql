@@ -1,8 +1,14 @@
 .blog-container {
-  margin-top: 15rem;
+  margin-top: $blog-margin;
+  margin-left: $blog-margin;
   position: absolute;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  //padding-right: $l-size;
+  width: 120rem;
+  height: 180rem;
 }
 
 .item-container {
@@ -10,7 +16,7 @@
   border-left: 9px solid $grey-blue;
   color: white;
   padding: $s-size;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   margin: 0 0 $l-size $l-size;
   width: 100rem;
   flex: 1 1 auto;
@@ -55,6 +61,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex: 0 0 60rem;
+    flex: 0 0 80rem;
   }
 }

@@ -1,14 +1,15 @@
-import BlogItem from './BlogItem';
-import EntryListFilter from './EntryListFilter';
-import React, { useState, useEffect } from 'react';
-import Loader from 'react-loader-spinner';
-import { useQuery } from '@apollo/react-hooks';
-import { LOAD_BLOGS } from '../apollo/protocol';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import BlogItem from "./BlogItem";
+import EntryListFilter from "./EntryListFilter";
+import React, { useState, useEffect } from "react";
+import Loader from "react-loader-spinner";
+import { useQuery } from "@apollo/react-hooks";
+import { LOAD_BLOGS } from "../apollo/protocol";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { db_mock } from "../apollo/db_mock";
 
 const Dashboard = () => {
-  const [text, setText] = useState('');
-  const [search, setSearch] = useState('Title');
+  const [text, setText] = useState("");
+  const [search, setSearch] = useState("Title");
   const [page, setPage] = useState(1);
 
   const filterBlogs = (blogs) => {
@@ -39,14 +40,13 @@ const Dashboard = () => {
     );
   }
 
-  if (error) {
-    console.log(error);
-    return <p>Error</p>;
-  }
-
   let argBlogs = []; //required for page numbers
 
-  search === 'Title'
+  if (error) {
+    data.blogs = db_mock;
+  }
+
+  search === "Title"
     ? (argBlogs = data.blogs.filter((item) => item.title.includes(text)))
     : (argBlogs = data.blogs.filter((item) => item.content.includes(text)));
 

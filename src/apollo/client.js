@@ -4,10 +4,12 @@ import { ApolloLink, from } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { onError } from 'apollo-link-error';
 import { setContext } from 'apollo-link-context';
-import { config } from '../config/config';
+import config from '../config/config';
 import jwt from 'jsonwebtoken';
 
-const link = new HttpLink({ uri: 'http://localhost:4000/' });
+const link = new HttpLink({
+  uri: 'http://localhost:4000',
+});
 const cache = new InMemoryCache();
 
 const authLink = setContext((_, { headers }) => {
@@ -20,12 +22,14 @@ const authLink = setContext((_, { headers }) => {
     });
   }
 
-  if (expired === true || !token) return { headers };
+  if (expired === true || !token) {
+    return { headers };
+  }
 
   return {
     headers: {
       ...headers,
-      authorization: expired ? '' : `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   };
 });
